@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Module
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Employee Class-->
+    <type name="Webkul\Module\Model\Employee">
+        <arguments>
+            <argument name="empattribute" xsi:type="array">
+                <item name="name" xsi:type="string">Name</item>
+                <item name="id" xsi:type="string">Id</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--CustomVirtualEmployee virtualType class for Employee class-->
+    <virtualType name="CustomVirtualEmployee" type="Webkul\Module\Model\Employee">
+    </virtualType>
+
+    <!--FirstEmployee virtualType class for EmpRecord class-->
+    <virtualType name="FirstEmployee" type="Webkul\Module\Model\EmpRecord">
+        <arguments>
+            <argument name="record" xsi:type="array">
+                <item name="name_1" xsi:type="string">Jack</item>
+                <item name="id_1" xsi:type="string">101</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!--SecondEmployee virtualType class for EmpRecord class-->
+    <virtualType name="SecondEmployee" type="Webkul\Module\Model\EmpRecord">
+        <arguments>
+            <argument name="record" xsi:type="array">
+                <item name="name_2" xsi:type="string">Lusi</item>
+                <item name="id_1" xsi:type="string">140</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!--using virtualType classes FirstEmployee and SecondEmployee within di.xml file-->
+    <type name="Webkul\Module\Model\AllRecords">
+        <arguments>
+            <argument name="allRecords" xsi:type="array">
+                <item name="firstEmployee" xsi:type="object">FirstEmployee</item>
+                <item name="secondEmployee" xsi:type="object">SecondEmployee</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
